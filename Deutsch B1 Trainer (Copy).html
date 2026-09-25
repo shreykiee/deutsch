@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Deutsch B1 Trainer (Copy)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  --bg: #F2F5F0;
+  --surface: #FFFFFF;
+  --surface-2: #E9EEE8;
+  --ink: #17211B;
+  --muted: #5C6A61;
+  --line: #D5DDD6;
+  --accent: #1E6F4A;
+  --accent-ink: #FFFFFF;
+  --accent-soft: #DCEEE3;
+  --warn: #A9701A;
+  --warn-soft: #FBEFD9;
+  --bad: #B23B3B;
+  --bad-soft: #F8E1E1;
+  --focus: #1E6F4A;
+  --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans: "Public Sans", -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F1613; --surface: #182019; --surface-2: #1F2A22; --ink: #E6EDE7; --muted: #9AA79E;
+    --line: #2A362E; --accent: #6CCB95; --accent-ink: #0F1613; --accent-soft: #1E3A2A;
+    --warn: #E0A84A; --warn-soft: #3A2E14; --bad: #E07070; --bad-soft: #3D1C1C; --focus: #6CCB95;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0F1613; --surface: #182019; --surface-2: #1F2A22; --ink: #E6EDE7; --muted: #9AA79E;
+  --line: #2A362E; --accent: #6CCB95; --accent-ink: #0F1613; --accent-soft: #1E3A2A;
+  --warn: #E0A84A; --warn-soft: #3A2E14; --bad: #E07070; --bad-soft: #3D1C1C; --focus: #6CCB95;
+}
+*, *::before, *::after { box-sizing: inherit; }
+html { scroll-padding-top: env(safe-area-inset-top, 0px); -webkit-text-size-adjust: 100%; }
+html, body { height: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: var(--sans); font-size: 16px; line-height: 1.5;
+}
+img { max-width: 100%; }
+button, input, textarea, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } }
+
+.app { max-width: 720px; margin: 0 auto; padding: 14px 16px 110px; }
+@media (min-width: 760px) { .app { padding: 24px 24px 60px; } }
+
+/* header */
+.head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+.head h1 { font-family: var(--serif); font-weight: 600; font-size: 1.6rem; margin: 0; letter-spacing: -0.01em; }
+.head .exam { font-size: 0.9rem; color: var(--muted); text-align: right; }
+.head .exam strong { color: var(--ink); font-weight: 600; }
+.head .exam button { background: none; border: 0; padding: 0; color: var(--muted); text-decoration: underline; text-underline-offset: 3px; font-size: 0.85rem; }
+
+/* nav */
+.nav { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  background: var(--surface); border-top: 1px solid var(--line);
+  padding: 6px 4px calc(6px + env(safe-area-inset-bottom, 0px)); display: flex; }
+.nav button { flex: 1; background: none; border: 0; padding: 6px 2px; font-size: 0.72rem; font-weight: 500; color: var(--muted); border-radius: 8px; line-height: 1.2; }
+.nav button .ic { display: block; font-family: var(--serif); font-size: 1.15rem; font-weight: 600; color: var(--muted); margin-bottom: 1px; }
+.nav button[aria-current="page"] { color: var(--accent); }
+.nav button[aria-current="page"] .ic { color: var(--accent); }
+@media (min-width: 760px) {
+  .nav { position: static; border: 0; border-bottom: 1px solid var(--line); padding: 0; margin: 4px 0 20px; background: transparent; gap: 4px; }
+  .nav button { flex: 0 0 auto; display: flex; align-items: center; gap: 8px; font-size: 0.95rem; padding: 10px 12px; border-radius: 0; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+  .nav button .ic { font-size: 1.05rem; margin: 0; }
+  .nav button[aria-current="page"] { border-bottom-color: var(--accent); }
+}
+
+/* generic */
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px; margin-bottom: 12px; }
+.card h2 { font-family: var(--serif); font-weight: 600; font-size: 1.25rem; margin: 0 0 6px; }
+.card h3 { font-size: 0.95rem; font-weight: 600; margin: 14px 0 6px; }
+.card h3:first-child { margin-top: 0; }
+p { margin: 0 0 8px; }
+.muted { color: var(--muted); }
+.small { font-size: 0.875rem; }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.row.between { justify-content: space-between; }
+.btn { border: 1px solid var(--accent); background: var(--accent); color: var(--accent-ink); border-radius: 10px; padding: 10px 16px; font-weight: 600; font-size: 0.95rem; }
+.btn:disabled { opacity: 0.5; cursor: default; }
+.btn.ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+.btn.ghost:hover { border-color: var(--ink); }
+.btn.warn { background: var(--warn-soft); color: var(--ink); border-color: var(--warn-soft); }
+.btn.sm { padding: 6px 12px; font-size: 0.85rem; border-radius: 8px; }
+.btn.wide { width: 100%; }
+.chip { display: inline-block; padding: 4px 10px; border-radius: 999px; font-size: 0.8rem; background: var(--surface-2); color: var(--muted); border: 1px solid transparent; }
+.chip.on { background: var(--accent-soft); color: var(--accent); border-color: var(--accent); }
+button.chip { cursor: pointer; }
+.pill { display: inline-block; padding: 2px 8px; border-radius: 6px; font-size: 0.78rem; font-weight: 600; }
+.pill.akk { background: var(--accent-soft); color: var(--accent); }
+.pill.dat { background: var(--warn-soft); color: var(--warn); }
+.pill.weak { background: var(--bad-soft); color: var(--bad); }
+.pill.ok { background: var(--accent-soft); color: var(--accent); }
+.divider { border: 0; border-top: 1px solid var(--line); margin: 12px 0; }
+textarea { width: 100%; min-height: 150px; resize: vertical; border: 1px solid var(--line); border-radius: 10px; padding: 12px; background: var(--bg); font-family: var(--serif); font-size: 1.05rem; line-height: 1.55; }
+input[type="text"], input[type="date"], select { border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; background: var(--bg); }
+.bar { height: 6px; background: var(--surface-2); border-radius: 999px; overflow: hidden; }
+.bar > i { display: block; height: 100%; background: var(--accent); border-radius: 999px; }
+
+/* drill */
+.drill .meta { display: flex; justify-content: space-between; color: var(--muted); font-size: 0.85rem; margin-bottom: 14px; }
+.sentence { font-family: var(--serif); font-size: 1.55rem; line-height: 1.55; margin: 6px 0 18px; }
+@media (max-width: 400px) { .sentence { font-size: 1.35rem; } }
+.sentence input.gap {
+  font: inherit; width: 4.8ch; min-width: 4.8ch; border: 0; border-bottom: 2px solid var(--accent); background: transparent;
+  text-align: center; color: var(--ink); padding: 0 2px; border-radius: 0; margin: 0 2px;
+}
+.sentence .gapword { border-bottom: 2px solid var(--accent); padding: 0 4px; font-weight: 600; }
+.sentence .gapword.wrong { border-bottom-color: var(--bad); text-decoration: line-through; text-decoration-color: var(--bad); font-weight: 400; }
+.sentence .gapword.right { color: var(--accent); }
+.hint { font-size: 0.95rem; color: var(--muted); margin-bottom: 12px; }
+.fb { border-radius: 10px; padding: 12px 14px; margin: 12px 0; font-size: 0.95rem; }
+.fb.good { background: var(--accent-soft); }
+.fb.bad { background: var(--bad-soft); }
+.fb.note { background: var(--surface-2); }
+.fb .big { font-family: var(--serif); font-size: 1.2rem; margin-bottom: 6px; }
+.fb dl { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; margin: 8px 0 0; font-size: 0.9rem; }
+.fb dt { color: var(--muted); }
+.fb dd { margin: 0; }
+.opts { display: grid; gap: 8px; margin: 10px 0; }
+.opts button { text-align: left; background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; font-family: var(--serif); font-size: 1.1rem; }
+.opts button:hover { border-color: var(--ink); }
+.opts button.right { background: var(--accent-soft); border-color: var(--accent); }
+.opts button.wrong { background: var(--bad-soft); border-color: var(--bad); }
+.opts button:disabled { cursor: default; }
+.explain { font-size: 0.95rem; }
+.kw { font-family: var(--serif); font-weight: 600; }
+
+/* lists */
+.list { display: flex; flex-direction: column; }
+.item { display: grid; grid-template-columns: 1fr auto; gap: 4px 10px; padding: 10px 0; border-top: 1px solid var(--line); align-items: baseline; }
+.item:first-child { border-top: 0; }
+.item .de { font-family: var(--serif); font-size: 1.1rem; }
+.item .en { color: var(--muted); font-size: 0.9rem; grid-column: 1 / -1; }
+.item .ex { font-family: var(--serif); font-size: 1rem; grid-column: 1 / -1; color: var(--ink); margin-top: 2px; }
+.item .ex b { color: var(--accent); font-weight: 600; }
+details { border-top: 1px solid var(--line); padding: 8px 0; }
+details:first-of-type { border-top: 0; }
+summary { cursor: pointer; font-weight: 600; padding: 4px 0; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; color: var(--muted); font-weight: 400; font-size: 1.2rem; }
+details[open] summary::after { content: "–"; }
+.phrases { margin: 6px 0 4px; padding: 0; list-style: none; }
+.phrases li { font-family: var(--serif); font-size: 1.05rem; padding: 5px 0 5px 12px; border-left: 2px solid var(--accent-soft); margin: 4px 0; }
+.phrases li.head { border-left: 0; padding-left: 0; font-family: var(--sans); font-size: 0.85rem; color: var(--muted); margin-top: 10px; }
+.steps { counter-reset: s; margin: 0; padding: 0; list-style: none; }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 28px 1fr; gap: 8px; padding: 8px 0; border-top: 1px solid var(--line); }
+.steps li:first-child { border-top: 0; }
+.steps li::before { content: counter(s); font-family: var(--serif); font-weight: 600; color: var(--accent); font-size: 1.15rem; }
+.steps b { display: block; }
+.steps span { font-family: var(--serif); color: var(--muted); }
+
+/* stats */
+.stat { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; align-items: center; padding: 8px 0; border-top: 1px solid var(--line); }
+.stat:first-child { border-top: 0; }
+.stat .n { font-family: var(--serif); font-size: 1.2rem; font-weight: 600; }
+.stat .bar { grid-column: 1 / -1; }
+.bignum { font-family: var(--serif); font-size: 2.6rem; font-weight: 600; line-height: 1; }
+
+/* writing */
+.out { white-space: pre-wrap; font-size: 0.95rem; line-height: 1.55; background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; min-height: 40px; }
+.out:empty { display: none; }
+.wrap { overflow-x: auto; }
+.tabs2 { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+.empty { color: var(--muted); padding: 12px 0; }
+.toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(84px + env(safe-area-inset-bottom, 0px)); background: var(--ink); color: var(--bg); padding: 8px 14px; border-radius: 999px; font-size: 0.85rem; z-index: 30; opacity: 0; transition: opacity .2s; pointer-events: none; }
+.toast.show { opacity: 1; }
+@media (min-width: 760px) { .toast { bottom: 24px; } }
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="head">
+    <h1>Deutsch B1</h1>
+    <div class="exam" id="examBox"></div>
+  </header>
+  <nav class="nav" id="nav" aria-label="Bereiche"></nav>
+  <main id="view"></main>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+// ---------- DATA: Verben mit Präpositionen ----------
+// [verb, preposition, case (A/D), sentence with ___ , english]
+const VERBS = [
+["sich interessieren","für","A","Ich interessiere mich sehr ___ Fußball.","to be interested in"],
+["sich freuen (Zukunft)","auf","A","Ich freue mich schon ___ die Sommerferien.","to look forward to"],
+["sich freuen (jetzt)","über","A","Sie hat sich sehr ___ das Geschenk gefreut.","to be happy about"],
+["warten","auf","A","Wir warten seit zwanzig Minuten ___ den Bus.","to wait for"],
+["denken","an","A","Ich denke oft ___ meine Familie in Indien.","to think of"],
+["sich erinnern","an","A","Erinnerst du dich noch ___ unseren ersten Deutschkurs?","to remember"],
+["sich gewöhnen","an","A","Ich habe mich schnell ___ das Wetter in Schottland gewöhnt.","to get used to"],
+["teilnehmen","an","D","Letztes Jahr habe ich ___ einem Sprachkurs teilgenommen.","to take part in"],
+["glauben","an","A","Viele Menschen glauben ___ Wunder.","to believe in"],
+["sich kümmern","um","A","Wer kümmert sich ___ die Kinder, wenn du arbeitest?","to take care of"],
+["sich bewerben (Stelle)","um","A","Ich habe mich ___ eine Stelle als Entwickler beworben.","to apply for"],
+["sich bewerben (Firma)","bei","D","Er bewirbt sich ___ einer großen Firma in München.","to apply at"],
+["bitten","um","A","Darf ich Sie ___ einen Gefallen bitten?","to ask for"],
+["sich bedanken (Sache)","für","A","Ich möchte mich ___ Ihre Hilfe bedanken.","to thank for"],
+["sich bedanken (Person)","bei","D","Hast du dich schon ___ deiner Tante bedankt?","to thank (someone)"],
+["sich entschuldigen (Sache)","für","A","Ich entschuldige mich ___ die Verspätung.","to apologise for"],
+["sich entschuldigen (Person)","bei","D","Du solltest dich ___ deinem Kollegen entschuldigen.","to apologise to"],
+["sich beschweren (Sache)","über","A","Die Nachbarn haben sich ___ den Lärm beschwert.","to complain about"],
+["sich beschweren (Person)","bei","D","Ich habe mich ___ dem Vermieter beschwert.","to complain to"],
+["sprechen (Thema)","über","A","Heute möchte ich ___ das Thema „Sport“ sprechen.","to talk about"],
+["sprechen (Person)","mit","D","Ich muss dringend ___ meinem Chef sprechen.","to speak with"],
+["diskutieren","über","A","Wir haben lange ___ die Umwelt diskutiert.","to discuss"],
+["sich unterhalten","über","A","Wir haben uns ___ das neue Café unterhalten.","to chat about"],
+["nachdenken","über","A","Ich muss ___ dein Angebot noch nachdenken.","to think over"],
+["sich informieren","über","A","Im Internet kann man sich ___ alles informieren.","to find out about"],
+["berichten","über","A","Die Zeitung berichtet ___ den Unfall.","to report on"],
+["lachen","über","A","Alle haben ___ seinen Witz gelacht.","to laugh about"],
+["sich wundern","über","A","Ich wundere mich ___ die hohen Preise.","to be surprised about"],
+["sich aufregen","über","A","Mein Vater regt sich immer ___ die Politik auf.","to get worked up about"],
+["sich ärgern","über","A","Ich ärgere mich ___ die vielen Fehler.","to be annoyed about"],
+["abhängen","von","D","Das hängt ___ dem Wetter ab.","to depend on"],
+["träumen","von","D","Ich träume ___ einem eigenen Haus.","to dream of"],
+["erzählen","von","D","Erzähl mir ___ deiner Reise!","to tell about"],
+["halten (Meinung)","von","D","Was hältst du ___ der Idee?","to think of (opinion)"],
+["sich verabschieden","von","D","Wir haben uns ___ unseren Freunden verabschiedet.","to say goodbye to"],
+["sich erholen","von","D","Im Urlaub will ich mich ___ dem Stress erholen.","to recover from"],
+["sich unterscheiden","von","D","Das Leben in der Stadt unterscheidet sich stark ___ dem Leben auf dem Land.","to differ from"],
+["überzeugt sein","von","D","Ich bin ___ dieser Lösung überzeugt.","to be convinced of"],
+["begeistert sein","von","D","Die Kinder waren ___ dem Film begeistert.","to be enthusiastic about"],
+["sich konzentrieren","auf","A","Ich kann mich nicht ___ die Arbeit konzentrieren.","to concentrate on"],
+["sich vorbereiten","auf","A","Ich bereite mich ___ die B1-Prüfung vor.","to prepare for"],
+["sich verlassen","auf","A","Man kann sich immer ___ ihn verlassen.","to rely on"],
+["achten","auf","A","Man sollte ___ eine gesunde Ernährung achten.","to pay attention to"],
+["aufpassen","auf","A","Kannst du kurz ___ meine Tasche aufpassen?","to keep an eye on"],
+["antworten","auf","A","Er hat nicht ___ meine E-Mail geantwortet.","to reply to"],
+["reagieren","auf","A","Wie hat sie ___ die Nachricht reagiert?","to react to"],
+["verzichten","auf","A","Viele Leute verzichten heute ___ Fleisch.","to do without"],
+["hoffen","auf","A","Wir hoffen ___ gutes Wetter am Wochenende.","to hope for"],
+["stolz sein","auf","A","Meine Eltern sind sehr stolz ___ mich.","to be proud of"],
+["wütend sein","auf","A","Sie ist immer noch wütend ___ ihren Bruder.","to be angry at"],
+["neugierig sein","auf","A","Ich bin neugierig ___ das Ergebnis.","to be curious about"],
+["sich beschäftigen","mit","D","In meiner Freizeit beschäftige ich mich ___ Programmieren.","to occupy oneself with"],
+["anfangen","mit","D","Wann fängst du ___ dem neuen Job an?","to start with"],
+["aufhören","mit","D","Er hat endlich ___ dem Rauchen aufgehört.","to stop (doing)"],
+["sich streiten","mit","D","Ich habe mich ___ meinem Bruder gestritten.","to argue with"],
+["sich treffen","mit","D","Am Samstag treffe ich mich ___ Freunden.","to meet with"],
+["vergleichen","mit","D","Man kann Glasgow nicht ___ London vergleichen.","to compare with"],
+["rechnen","mit","D","Ich habe nicht ___ so vielen Gästen gerechnet.","to expect / count on"],
+["sich verstehen","mit","D","Ich verstehe mich gut ___ meinen Kollegen.","to get along with"],
+["zufrieden sein","mit","D","Bist du ___ deiner Wohnung zufrieden?","to be satisfied with"],
+["einverstanden sein","mit","D","Ich bin ___ deinem Vorschlag einverstanden.","to agree with"],
+["fertig sein","mit","D","Ich bin ___ den Hausaufgaben fertig.","to be done with"],
+["sich entscheiden","für","A","Ich habe mich ___ das blaue Auto entschieden.","to decide on"],
+["sorgen","für","A","Die Eltern sorgen ___ ihre Kinder.","to provide for"],
+["sich engagieren","für","A","Sie engagiert sich ___ den Umweltschutz.","to be committed to"],
+["sich eignen","für","A","Dieses Buch eignet sich gut ___ Anfänger.","to be suitable for"],
+["verantwortlich sein","für","A","Ich bin ___ das Projekt verantwortlich.","to be responsible for"],
+["bekannt sein","für","A","Bayern ist ___ sein Bier bekannt.","to be known for"],
+["dankbar sein","für","A","Ich bin sehr dankbar ___ deine Unterstützung.","to be grateful for"],
+["kämpfen","für","A","Die Organisation kämpft ___ die Rechte der Kinder.","to fight for"],
+["Angst haben","vor","D","Viele Leute haben Angst ___ der Prüfung.","to be afraid of"],
+["sich fürchten","vor","D","Das Kind fürchtet sich ___ dem Hund.","to fear"],
+["warnen","vor","D","Der Arzt hat mich ___ zu viel Zucker gewarnt.","to warn against"],
+["schützen","vor","D","Die Jacke schützt ___ dem Regen.","to protect from"],
+["leiden (Belastung)","unter","D","Viele Studenten leiden ___ Stress.","to suffer from (pressure)"],
+["leiden (Krankheit)","an","D","Sie leidet ___ einer Allergie.","to suffer from (illness)"],
+["sterben","an","D","Er ist ___ einer schweren Krankheit gestorben.","to die of"],
+["sich handeln (es)","um","A","Bei diesem Text handelt es sich ___ einen Zeitungsartikel.","it is about"],
+["gehen (es)","um","A","In der Diskussion geht es ___ das Thema Homeoffice.","it is about"],
+["sich bemühen","um","A","Ich bemühe mich ___ eine bessere Aussprache.","to make an effort for"],
+["gehören","zu","D","Die Ausbildung gehört ___ den wichtigsten Themen.","to belong to"],
+["passen","zu","D","Die Schuhe passen gut ___ der Hose.","to go with"],
+["einladen","zu","D","Ich möchte dich ___ meiner Party einladen.","to invite to"],
+["gratulieren","zu","D","Ich gratuliere dir ___ deinem Geburtstag!","to congratulate on"],
+["führen","zu","D","Zu wenig Schlaf führt ___ Konzentrationsproblemen.","to lead to"],
+["fragen","nach","D","Ich habe ___ dem Weg gefragt.","to ask about / for"],
+["suchen","nach","D","Ich suche schon lange ___ einer neuen Wohnung.","to search for"],
+["sich erkundigen","nach","D","Er hat sich ___ den Öffnungszeiten erkundigt.","to enquire about"],
+["sich sehnen","nach","D","Ich sehne mich ___ meiner Heimat.","to long for"],
+["schmecken","nach","D","Die Suppe schmeckt ___ Knoblauch.","to taste of"],
+["protestieren","gegen","A","Die Studenten protestieren ___ die hohen Gebühren.","to protest against"],
+["sich wehren","gegen","A","Man sollte sich ___ Ungerechtigkeit wehren.","to defend oneself against"],
+["sich verlieben","in","A","Er hat sich ___ seine Kollegin verliebt.","to fall in love with"],
+["interessiert sein","an","D","Ich bin sehr ___ diesem Job interessiert.","to be interested in"],
+["schuld sein","an","D","Wer ist ___ dem Unfall schuld?","to be to blame for"],
+["arbeiten","an","D","Ich arbeite gerade ___ einem neuen Projekt.","to work on"],
+["sich beteiligen","an","D","Alle Schüler beteiligen sich ___ dem Projekt.","to participate in"],
+["bestehen","aus","D","Die Prüfung besteht ___ vier Teilen.","to consist of"],
+["sich melden","bei","D","Melde dich bitte ___ mir, wenn du ankommst.","to get in touch with"],
+["helfen","bei","D","Kannst du mir ___ den Hausaufgaben helfen?","to help with"],
+["beliebt sein","bei","D","Er ist ___ allen Kollegen sehr beliebt.","to be popular with"]
+].map((r, i) => ({ id: "v" + i, verb: r[0], prep: r[1], kase: r[2], sentence: r[3], en: r[4] }));
+
+// wo-/da-forms
+function woForm(prep) { return (/^[aeiouäöü]/.test(prep) ? "wor" : "wo") + prep; }
+function daForm(prep) { return (/^[aeiouäöü]/.test(prep) ? "dar" : "da") + prep; }
+function personQ(v) { return v.prep.charAt(0).toUpperCase() + v.prep.slice(1) + " " + (v.kase === "A" ? "wen" : "wem") + "?"; }
+// ---------- DATA: Wortschatz nach Themen ----------
+// topic -> [[de, en, sentence], ...]   (the bold word in the sentence is marked with *...*)
+const VOCAB_RAW = {
+"Arbeit & Beruf": [
+["die Ausbildung, -en","vocational training","Nach der Schule habe ich eine *Ausbildung* als Informatiker gemacht."],
+["die Teilzeit / die Vollzeit","part-time / full-time","Viele Eltern arbeiten lieber in *Teilzeit*, damit sie mehr Zeit für die Kinder haben."],
+["das Homeoffice","working from home","Meiner Meinung nach ist *Homeoffice* praktisch, aber man fühlt sich manchmal allein."],
+["der Kollege, -n / die Kollegin, -nen","colleague","Ein gutes Verhältnis zu den *Kollegen* ist mir sehr wichtig."],
+["die Bewerbung, -en","job application","Für eine *Bewerbung* braucht man einen Lebenslauf und ein Anschreiben."],
+["das Gehalt, -¨er","salary","Ein hohes *Gehalt* ist nicht alles – die Arbeit muss auch Spaß machen."],
+["die Überstunden (Pl.)","overtime","In meinem letzten Job musste ich oft *Überstunden* machen."],
+["die Erfahrung, -en","experience","Ich habe schon viel *Erfahrung* mit Kunden gesammelt."]
+],
+"Schule & Lernen": [
+["die Prüfung, -en","exam","Vor einer *Prüfung* bin ich immer sehr nervös."],
+["der Unterricht","lessons / class","In meinem Heimatland beginnt der *Unterricht* um acht Uhr."],
+["das Fach, -¨er","school subject","Mein Lieblings*fach* war Mathematik."],
+["die Fremdsprache, -n","foreign language","*Fremdsprachen* sind heute im Beruf sehr wichtig."],
+["die Note, -n","grade / mark","Gute *Noten* sind wichtig, aber nicht das Wichtigste im Leben."],
+["auswendig lernen","to learn by heart","Ich finde es sinnlos, alles *auswendig zu lernen*."],
+["das Studium","university studies","Mein *Studium* in Glasgow hat mir sehr geholfen."],
+["die Weiterbildung, -en","further training","Auch nach der Schule sollte man regelmäßig eine *Weiterbildung* machen."]
+],
+"Wohnen": [
+["die Miete, -n","rent","Die *Mieten* in Großstädten sind in den letzten Jahren stark gestiegen."],
+["der Vermieter, -","landlord","Mein *Vermieter* kümmert sich schnell um Reparaturen."],
+["die Wohngemeinschaft (WG), -en","shared flat","Als Student habe ich in einer *WG* gewohnt."],
+["der Stadtrand","outskirts","Am *Stadtrand* ist es ruhiger, aber man braucht ein Auto."],
+["die Nachbarschaft","neighbourhood","Eine gute *Nachbarschaft* ist mir wichtiger als eine große Wohnung."],
+["umziehen","to move house","Letztes Jahr bin ich nach Glasgow *umgezogen*."],
+["die Nebenkosten (Pl.)","utility costs","Zur Miete kommen noch die *Nebenkosten* für Strom und Wasser."],
+["einrichten","to furnish","Ich habe meine Wohnung einfach, aber gemütlich *eingerichtet*."]
+],
+"Gesundheit & Ernährung": [
+["die Ernährung","diet / nutrition","Eine gesunde *Ernährung* ist die beste Medizin."],
+["sich ernähren","to eat (habitually)","Ich versuche, mich ausgewogen zu *ernähren*."],
+["der Stress","stress","Viele Menschen leiden heute unter *Stress* im Beruf."],
+["sich erholen","to recover / relax","Am Wochenende muss ich mich vom Studium *erholen*."],
+["die Bewegung","exercise / movement","Regelmäßige *Bewegung* hält Körper und Geist fit."],
+["der Termin, -e","appointment","Ich habe morgen einen *Termin* beim Zahnarzt."],
+["das Fertiggericht, -e","ready meal","*Fertiggerichte* sind praktisch, aber meistens ungesund."],
+["die Krankenversicherung","health insurance","In Deutschland muss jeder eine *Krankenversicherung* haben."]
+],
+"Umwelt": [
+["der Umweltschutz","environmental protection","*Umweltschutz* geht uns alle etwas an."],
+["der Müll","rubbish / waste","In Deutschland wird der *Müll* getrennt."],
+["die Verpackung, -en","packaging","Ich versuche, Produkte mit wenig *Verpackung* zu kaufen."],
+["der Klimawandel","climate change","Der *Klimawandel* ist das größte Problem unserer Zeit."],
+["die öffentlichen Verkehrsmittel","public transport","Ich fahre lieber mit den *öffentlichen Verkehrsmitteln* als mit dem Auto."],
+["Energie sparen","to save energy","Zu Hause versuchen wir, *Energie zu sparen*."],
+["die Umweltverschmutzung","pollution","Die *Umweltverschmutzung* in großen Städten ist ein ernstes Problem."],
+["verschwenden","to waste","Man sollte kein Essen *verschwenden*."]
+],
+"Medien & Technik": [
+["das soziale Netzwerk, -e","social network","*Soziale Netzwerke* haben Vorteile und Nachteile."],
+["die Nachrichten (Pl.)","the news","Ich lese die *Nachrichten* meistens auf dem Handy."],
+["abhängig sein von","to be dependent on","Viele Jugendliche sind von ihrem Smartphone *abhängig*."],
+["die Werbung","advertising","Ich finde die *Werbung* im Internet sehr störend."],
+["herunterladen","to download","Man kann die App kostenlos *herunterladen*."],
+["der Datenschutz","data protection","Der *Datenschutz* im Internet ist mir sehr wichtig."],
+["die künstliche Intelligenz","artificial intelligence","*Künstliche Intelligenz* wird unser Leben stark verändern."],
+["online einkaufen","to shop online","Heute kaufen immer mehr Menschen *online ein*."]
+],
+"Freizeit & Sport": [
+["das Hobby, -s","hobby","In meiner Freizeit spiele ich gern Videospiele – das ist mein *Hobby*."],
+["der Verein, -e","club","In Deutschland sind viele Menschen Mitglied in einem *Verein*."],
+["die Mannschaft, -en","team","*Mannschaftssport* ist gut für die Zusammenarbeit."],
+["sich entspannen","to relax","Beim Lesen kann ich mich am besten *entspannen*."],
+["die Veranstaltung, -en","event","Am Wochenende gibt es in der Stadt viele *Veranstaltungen*."],
+["sich langweilen","to be bored","Ohne Hobby würde ich mich *langweilen*."],
+["regelmäßig","regularly","Ich gehe *regelmäßig* joggen, meistens dreimal pro Woche."],
+["das Fitnessstudio, -s","gym","Das *Fitnessstudio* ist teuer, aber es motiviert mich."]
+],
+"Familie & Beziehungen": [
+["die Beziehung, -en","relationship","Eine gute *Beziehung* braucht Vertrauen."],
+["sich vertragen","to make up / get on","Geschwister streiten sich oft, aber sie *vertragen* sich auch schnell wieder."],
+["die Erziehung","upbringing","In meinem Heimatland spielt die Familie bei der *Erziehung* eine große Rolle."],
+["die Großeltern (Pl.)","grandparents","Früher lebten die *Großeltern* oft mit der Familie zusammen."],
+["alleinerziehend","single-parent","*Alleinerziehende* Eltern haben es oft schwer."],
+["die Verantwortung","responsibility","Eltern tragen eine große *Verantwortung*."],
+["die Hochzeit, -en","wedding","In Indien dauert eine *Hochzeit* oft mehrere Tage."],
+["das Vertrauen","trust","Ohne *Vertrauen* funktioniert keine Freundschaft."]
+],
+"Reisen & Verkehr": [
+["die Sehenswürdigkeit, -en","sight / attraction","Glasgow hat viele interessante *Sehenswürdigkeiten*."],
+["die Unterkunft, -¨e","accommodation","Wir haben eine günstige *Unterkunft* über das Internet gebucht."],
+["der Stau, -s","traffic jam","Jeden Morgen stehe ich im *Stau*."],
+["die Verspätung, -en","delay","Der Zug hatte zwanzig Minuten *Verspätung*."],
+["die Fahrkarte, -n","ticket","Die *Fahrkarten* in Deutschland sind ziemlich teuer."],
+["das Fahrrad, -¨er","bicycle","Mit dem *Fahrrad* ist man in der Stadt oft schneller als mit dem Auto."],
+["der Führerschein","driving licence","Ich habe den *Führerschein* mit achtzehn gemacht."],
+["das Verkehrsmittel, -","means of transport","Das Fahrrad ist mein liebstes *Verkehrsmittel*."]
+],
+"Konsum & Einkaufen": [
+["das Angebot, -e","offer / special deal","Im Supermarkt gibt es diese Woche viele *Angebote*."],
+["die Qualität","quality","Ich achte beim Einkaufen mehr auf *Qualität* als auf den Preis."],
+["umtauschen","to exchange (goods)","Man kann die Ware innerhalb von 14 Tagen *umtauschen*."],
+["die Rechnung, -en","bill / invoice","Ich habe die *Rechnung* noch nicht bezahlt."],
+["günstig","inexpensive / good value","Online ist vieles *günstiger* als im Geschäft."],
+["der Kunde, -n / die Kundin, -nen","customer","Der *Kunde* ist König – so sagt man in Deutschland."],
+["sparen","to save (money)","Ich *spare* jeden Monat etwas Geld für den Urlaub."],
+["die Auswahl","selection / choice","Im Internet ist die *Auswahl* viel größer."]
+],
+"Meinung & Diskussion": [
+["der Vorteil, -e / der Nachteil, -e","advantage / disadvantage","Ein großer *Vorteil* ist, dass man Zeit spart."],
+["die Meinung, -en","opinion","Meiner *Meinung* nach sollte man weniger Fleisch essen."],
+["einerseits … andererseits","on one hand … on the other","*Einerseits* ist das Auto praktisch, *andererseits* ist es schlecht für die Umwelt."],
+["zustimmen","to agree","Ich *stimme* dir *zu*, aber ich sehe auch Probleme."],
+["der Grund, -¨e","reason","Der *Grund* dafür ist, dass viele Menschen wenig Zeit haben."],
+["die Erfahrung machen","to have an experience","Ich habe die *Erfahrung gemacht*, dass man im Ausland selbstständiger wird."],
+["im Vergleich zu","in comparison to","*Im Vergleich zu* Indien ist das Leben in Schottland sehr ruhig."],
+["zusammenfassend","in summary","*Zusammenfassend* kann ich sagen, dass Sport sehr wichtig ist."]
+]
+};
+const VOCAB = [];
+Object.keys(VOCAB_RAW).forEach((topic, ti) => {
+  VOCAB_RAW[topic].forEach((r, i) => VOCAB.push({ id: "w" + ti + "_" + i, topic, de: r[0], en: r[1], ex: r[2] }));
+});
+const TOPICS = Object.keys(VOCAB_RAW);
+
+// ---------- DATA: Grammatik ----------
+// {t: topic, q: question with ___, o: options, a: index of correct, e: explanation}
+const GRAMMAR = [
+{t:"Nebensätze",q:"Ich lerne Deutsch, ___ ich in Deutschland arbeiten möchte.",o:["weil","obwohl","dass"],a:0,e:"„weil“ gives the reason. In a Nebensatz the conjugated verb goes to the end: … arbeiten möchte."},
+{t:"Nebensätze",q:"___ ich klein war, habe ich in Indien gewohnt.",o:["Wenn","Als","Ob"],a:1,e:"„als“ = one single period or event in the past. „wenn“ = repeated events, or present/future conditions."},
+{t:"Nebensätze",q:"Er geht joggen, ___ es regnet.",o:["weil","obwohl","damit"],a:1,e:"„obwohl“ expresses a contrast (although). „trotzdem“ is the main-clause version: Es regnet, trotzdem geht er joggen."},
+{t:"Nebensätze",q:"Ich glaube, ___ Homeoffice viele Vorteile hat.",o:["dass","das","ob"],a:0,e:"After verbs of opinion (glauben, denken, finden, meinen) use the conjunction „dass“ (with double s). „das“ is an article or pronoun."},
+{t:"Nebensätze",q:"Ich weiß nicht, ___ er morgen kommt.",o:["dass","ob","wenn"],a:1,e:"An indirect yes/no question needs „ob“ (whether). Kommt er? → Ich weiß nicht, ob er kommt."},
+{t:"Nebensätze",q:"Weil ich müde war, ___",o:["bin ich früh ins Bett gegangen.","ich bin früh ins Bett gegangen."],a:0,e:"When a Nebensatz comes first, it takes position 1. The main clause then starts directly with the verb: …, bin ich …"},
+{t:"Nebensätze",q:"Ich mache Sport, ___ ich gesund bleibe.",o:["damit","weil","obwohl"],a:0,e:"„damit“ = purpose (so that). With the same subject you can also say: um gesund zu bleiben."},
+{t:"Nebensätze",q:"___ ich Zeit habe, gehe ich ins Kino.",o:["Wenn","Als","Ob"],a:0,e:"Present/future condition → „wenn“. „als“ is only for the past."},
+{t:"Relativsätze",q:"Das ist der Mann, ___ neben mir wohnt.",o:["der","den","dem"],a:0,e:"The man is the subject of the relative clause (he lives) → Nominativ masculine → „der“."},
+{t:"Relativsätze",q:"Die Frau, ___ ich gestern getroffen habe, ist Ärztin.",o:["die","der","den"],a:0,e:"Whom did I meet? → Akkusativ. Feminine Akkusativ is „die“."},
+{t:"Relativsätze",q:"Das Kind, ___ ich geholfen habe, war sehr nett.",o:["dem","das","den"],a:0,e:"helfen takes Dativ. Neuter Dativ relative pronoun = „dem“."},
+{t:"Relativsätze",q:"Die Stadt, ___ ich wohne, ist sehr groß.",o:["in der","in die","in dem"],a:0,e:"wohnen in + Dativ (where?). Feminine Dativ → „in der“. Colloquially „wo“ also works."},
+{t:"Relativsätze",q:"Die Freunde, ___ ich im Urlaub war, kommen aus Spanien.",o:["mit denen","mit den","mit die"],a:0,e:"mit + Dativ. The Dativ plural relative pronoun is „denen“ (not „den“)."},
+{t:"Konjunktiv II",q:"Wenn ich mehr Zeit ___, würde ich öfter Sport machen.",o:["hätte","habe","hatte"],a:0,e:"Unreal condition → Konjunktiv II: hätte / wäre / könnte / würde + Infinitiv."},
+{t:"Konjunktiv II",q:"___ Sie mir bitte helfen?",o:["Könnten","Können","Konnten"],a:0,e:"Polite request → „Könnten Sie …?“ (Konjunktiv II of können). „Konnten“ is Präteritum."},
+{t:"Konjunktiv II",q:"An deiner Stelle ___ ich mit dem Chef sprechen.",o:["würde","werde","wurde"],a:0,e:"Advice: An deiner Stelle würde ich … (würde + Infinitiv at the end)."},
+{t:"Konjunktiv II",q:"Ich ___ gern in einer größeren Wohnung.",o:["würde wohnen","wohne","wohnte"],a:0,e:"A wish → würde + Infinitiv. For most verbs B1 uses „würde“; only haben, sein and the modals have their own forms (hätte, wäre, könnte …)."},
+{t:"Konjunktiv II",q:"Wenn das Wetter besser ___, könnten wir wandern gehen.",o:["wäre","ist","war"],a:0,e:"Unreal condition with sein → „wäre“."},
+{t:"Passiv",q:"In Deutschland ___ der Müll getrennt.",o:["wird","ist","hat"],a:0,e:"Passiv Präsens = werden + Partizip II: Der Müll wird getrennt."},
+{t:"Passiv",q:"Das Haus ___ 1990 gebaut.",o:["wurde","wird","ist"],a:0,e:"Passiv Präteritum = wurde + Partizip II."},
+{t:"Passiv",q:"Die Rechnung muss bis Freitag ___.",o:["bezahlt werden","bezahlen","bezahlt sein"],a:0,e:"Passiv with a modal verb: Modalverb + Partizip II + werden (at the end)."},
+{t:"Konnektoren",q:"Er spricht ___ Deutsch, ___ auch Französisch.",o:["nicht nur … sondern","sowohl … und","entweder … oder"],a:0,e:"nicht nur … sondern auch = not only … but also. (sowohl … als auch also works, but not with „und“.)"},
+{t:"Konnektoren",q:"___ fahren wir ans Meer, ___ in die Berge.",o:["Entweder … oder","Weder … noch","Zwar … aber"],a:0,e:"entweder … oder = either … or. Note the verb comes right after „Entweder“."},
+{t:"Konnektoren",q:"Ich habe ___ Zeit ___ Geld für eine Reise.",o:["weder … noch","entweder … oder","nicht nur … sondern"],a:0,e:"weder … noch = neither … nor. It already contains the negation, so no „nicht“ or „kein“."},
+{t:"Konnektoren",q:"Das Restaurant ist ___ teuer, ___ das Essen ist ausgezeichnet.",o:["zwar … aber","weder … noch","je … desto"],a:0,e:"zwar … aber = admittedly … but. „zwar“ concedes a point, „aber“ brings the contrast."},
+{t:"Konnektoren",q:"Es regnet stark, ___ bleiben wir zu Hause.",o:["deshalb","trotzdem","obwohl"],a:0,e:"deshalb / deswegen / darum = therefore (consequence). The verb comes directly after it."},
+{t:"Konnektoren",q:"Es regnet stark, ___ gehen wir spazieren.",o:["trotzdem","deshalb","weil"],a:0,e:"trotzdem = nevertheless (contrast). Same meaning as obwohl, but with main-clause word order."},
+{t:"Konnektoren",q:"___ mehr ich lerne, ___ besser verstehe ich.",o:["Je … desto","Zwar … aber","Sowohl … als auch"],a:0,e:"je + Komparativ …, desto + Komparativ … The „je“ part is a Nebensatz (verb at the end)."},
+{t:"Temporale Nebensätze",q:"___ ich gefrühstückt hatte, bin ich zur Arbeit gefahren.",o:["Nachdem","Bevor","Während"],a:0,e:"nachdem + Plusquamperfekt (hatte gefrühstückt), then the main clause in Perfekt/Präteritum."},
+{t:"Temporale Nebensätze",q:"___ ich Deutsch lerne, höre ich oft Musik.",o:["Während","Nachdem","Bevor"],a:0,e:"während = while (two things at the same time)."},
+{t:"Temporale Nebensätze",q:"___ ich nach Glasgow gezogen bin, habe ich in Indien gewohnt.",o:["Bevor","Nachdem","Seit"],a:0,e:"bevor = before. The order of events: first Indien, then Glasgow."},
+{t:"Temporale Nebensätze",q:"___ ich in Schottland lebe, esse ich weniger scharf.",o:["Seit","Bis","Als"],a:0,e:"seit / seitdem = since (a situation that started in the past and continues). Both clauses in Präsens."},
+{t:"Infinitiv mit zu",q:"Ich habe keine Lust, heute ___.",o:["zu kochen","kochen","kochen zu"],a:0,e:"After Lust haben, Zeit haben, anfangen, versuchen, vergessen, es ist wichtig … → Infinitiv mit zu."},
+{t:"Infinitiv mit zu",q:"Es ist wichtig, jeden Tag Vokabeln ___.",o:["zu wiederholen","wiederholen","wiederzuholen"],a:0,e:"„wiederholen“ (to repeat) is not separable (stress on -ho-), so „zu“ stays in front: zu wiederholen."},
+{t:"Infinitiv mit zu",q:"Ich versuche, jeden Tag früh ___.",o:["aufzustehen","zu aufstehen","aufstehen zu"],a:0,e:"With separable verbs „zu“ goes between prefix and verb: auf-zu-stehen, an-zu-fangen, ein-zu-kaufen."},
+{t:"Infinitiv mit zu",q:"Ich möchte heute ___.",o:["schwimmen","zu schwimmen","schwimmen zu"],a:0,e:"After modal verbs (möchte, will, kann, muss …) there is no „zu“."},
+{t:"Adjektivendungen",q:"Ich habe einen ___ Freund.",o:["guten","guter","gutes"],a:0,e:"einen (Akkusativ masculine) already shows the case → the adjective takes the weak ending -en."},
+{t:"Adjektivendungen",q:"Das ist ein ___ Buch.",o:["interessantes","interessante","interessanten"],a:0,e:"„ein“ shows no gender, so the adjective does: neuter Nominativ → -es (ein interessantes Buch)."},
+{t:"Adjektivendungen",q:"Ich wohne in einer ___ Wohnung.",o:["kleinen","kleine","kleiner"],a:0,e:"Dativ (in + wo?) → always -en after einer/einem/dem/der."},
+{t:"Adjektivendungen",q:"Die ___ Leute sind sehr freundlich.",o:["jungen","junge","junger"],a:0,e:"After „die“ in the plural the adjective takes -en."},
+{t:"Adjektivendungen",q:"Ich trinke gern ___ Kaffee.",o:["schwarzen","schwarzer","schwarzes"],a:0,e:"No article, masculine Akkusativ → the adjective carries the ending of „den“: schwarz-en."},
+{t:"Vergangenheit",q:"Früher ___ ich jeden Tag Fußball.",o:["spielte","gespielt","spiele"],a:0,e:"Präteritum for narrating the past (in writing): regular verbs add -te: spielte, wohnte, lernte."},
+{t:"Vergangenheit",q:"Als Kind ___ ich viel Zeit bei meinen Großeltern.",o:["verbrachte","verbringe","verbringt"],a:0,e:"Irregular Präteritum: verbringen → verbrachte (like bringen → brachte)."},
+{t:"Vergangenheit",q:"Ich ___ gestern zu spät gekommen.",o:["bin","habe","war"],a:0,e:"Verbs of movement or change (kommen, gehen, fahren, aufstehen, einschlafen) form the Perfekt with „sein“."},
+{t:"Vergangenheit",q:"Nachdem wir gegessen ___, sind wir spazieren gegangen.",o:["hatten","haben","hatte"],a:0,e:"Plusquamperfekt after nachdem: hatten + Partizip II. Subject „wir“ → hatten."},
+{t:"Vergangenheit",q:"Ich habe gestern nicht kommen ___.",o:["können","gekonnt","konnte"],a:0,e:"Perfekt of a modal verb + infinitive → double infinitive at the end: … nicht kommen können."},
+{t:"Genitiv",q:"Wegen ___ Wetters bleiben wir zu Hause.",o:["des schlechten","dem schlechten","das schlechte"],a:0,e:"wegen, trotz, während + Genitiv: des schlechten Wetters (masc./neut. Genitiv adds -(e)s)."},
+{t:"Genitiv",q:"Trotz ___ Regens sind wir spazieren gegangen.",o:["des","dem","den"],a:0,e:"trotz + Genitiv → des Regens. (In spoken German people often use Dativ, but the exam wants Genitiv.)"},
+{t:"Modalverben",q:"Ich ___ gestern zum Arzt gehen.",o:["musste","muss","gemusst"],a:0,e:"Past of a modal verb is usually Präteritum: musste, konnte, wollte, durfte, sollte."},
+{t:"Indirekte Fragen",q:"Kannst du mir sagen, ___ der Bahnhof ist?",o:["wo","wohin","woher"],a:0,e:"Indirect W-question: the question word starts the Nebensatz and the verb goes to the end. wo = where (location), wohin = where to."},
+{t:"Indirekte Fragen",q:"Weißt du, ___ das Geschäft öffnet?",o:["wann","wenn","als"],a:0,e:"„wann“ asks for a time. „wenn“ and „als“ are conjunctions, not question words."}
+].map((g, i) => Object.assign({ id: "g" + i }, g));
+const GTOPICS = [...new Set(GRAMMAR.map(g => g.t))];
+
+// ---------- DATA: Redemittel nach Prüfungsteil ----------
+const REDEMITTEL = [
+{ part: "Sprechen Teil 1", title: "Gemeinsam etwas planen", info: "Ihr plant zu zweit etwas (Party, Ausflug, Geschenk). Vorschläge machen, reagieren, zusammen entscheiden. Ca. 3 Minuten.",
+  groups: [
+  ["Vorschlag machen", ["Wie wäre es, wenn wir am Samstag …?", "Ich schlage vor, dass wir …", "Wir könnten doch …", "Was hältst du davon, wenn …?", "Hast du Lust, … zu …?"]],
+  ["Zustimmen", ["Das ist eine gute Idee.", "Einverstanden, das machen wir so.", "Da bin ich ganz deiner Meinung.", "Ja, das passt mir gut."]],
+  ["Ablehnen / Gegenvorschlag", ["Das finde ich nicht so gut, weil …", "Ich hätte einen anderen Vorschlag: …", "Wäre es nicht besser, wenn wir …?", "Ich weiß nicht, ob das klappt, weil …"]],
+  ["Nachfragen", ["Sollen wir auch … organisieren?", "Wer kümmert sich um …?", "Und wann treffen wir uns?", "Was bringen wir mit?"]],
+  ["Abschließen", ["Gut, dann machen wir das so.", "Ich bringe … mit, und du kümmerst dich um …", "Dann bis Samstag!"]]
+  ]},
+{ part: "Sprechen Teil 2", title: "Ein Thema präsentieren", info: "Ca. 3 Minuten allein sprechen. Folge den fünf Folien – sie sind in jeder Prüfung gleich.",
+  groups: [
+  ["Folie 1 – Thema vorstellen", ["Ich möchte heute über das Thema „…“ sprechen.", "Mein Thema heute ist …", "Zuerst erzähle ich von meinen Erfahrungen, dann spreche ich über die Situation in meinem Heimatland, danach nenne ich Vor- und Nachteile, und zum Schluss sage ich meine Meinung."]],
+  ["Folie 2 – Persönliche Erfahrung", ["Ich habe die Erfahrung gemacht, dass …", "Bei mir ist es so, dass …", "Als ich … war, habe ich …", "Ich persönlich …"]],
+  ["Folie 3 – Situation im Heimatland", ["In meinem Heimatland ist es üblich, dass …", "Bei uns in Indien …", "Im Vergleich zu Deutschland …", "Die meisten Leute bei uns …"]],
+  ["Folie 4 – Vor- und Nachteile", ["Ein großer Vorteil ist, dass …", "Ein Nachteil ist allerdings, dass …", "Einerseits …, andererseits …", "Dafür spricht, dass … Dagegen spricht, dass …"]],
+  ["Folie 5 – Meinung und Abschluss", ["Meiner Meinung nach …", "Ich bin der Meinung, dass …", "Ich finde es wichtig, dass …", "Zusammenfassend kann ich sagen, dass …", "Das war meine Präsentation. Vielen Dank fürs Zuhören. Habt ihr noch Fragen?"]]
+  ]},
+{ part: "Sprechen Teil 3", title: "Rückmeldung geben und Fragen stellen", info: "Nach der Präsentation des Partners: eine Rückmeldung und eine Frage. Danach beantwortest du selbst Fragen.",
+  groups: [
+  ["Rückmeldung", ["Vielen Dank für deine Präsentation.", "Mir hat besonders gefallen, dass …", "Ich fand dein Thema sehr interessant, weil …", "Du hast das sehr klar erklärt."]],
+  ["Frage stellen", ["Ich hätte noch eine Frage: …", "Du hast gesagt, dass … Warum …?", "Mich würde interessieren, ob …", "Wie ist das bei dir persönlich?"]],
+  ["Frage beantworten", ["Das ist eine gute Frage.", "Ich denke, dass …", "Da bin ich mir nicht sicher, aber …", "Bei mir ist das so: …"]]
+  ]},
+{ part: "Schreiben Teil 1", title: "Informelle E-Mail (ca. 80 Wörter)", info: "An eine Freundin / einen Freund. Alle drei Inhaltspunkte behandeln! Anrede und Gruß nicht vergessen.",
+  groups: [
+  ["Anrede", ["Liebe Anna, / Lieber Tom,", "Hallo Maria,"]],
+  ["Einleitung", ["vielen Dank für deine E-Mail.", "wie geht es dir? Mir geht es gut.", "ich habe mich sehr über deine Nachricht gefreut.", "ich habe lange nichts von dir gehört."]],
+  ["Inhalt", ["Ich schreibe dir, weil …", "Stell dir vor, …", "Leider kann ich nicht kommen, weil …", "Hast du Lust, …?", "Ich schlage vor, dass wir …", "Könntest du mir vielleicht …?"]],
+  ["Schluss", ["Ich freue mich auf deine Antwort.", "Melde dich bald!", "Bis bald!", "Liebe Grüße / Viele Grüße\nAvi"]]
+  ]},
+{ part: "Schreiben Teil 2", title: "Meinung äußern (ca. 80 Wörter)", info: "Beitrag im Gästebuch / Forum zu einer Sendung oder einem Artikel. Meinung + Begründung + Beispiel. Sie-Form oder neutral.",
+  groups: [
+  ["Einstieg", ["Ich habe die Sendung / den Beitrag zum Thema „…“ gesehen und möchte dazu meine Meinung sagen.", "Das Thema … finde ich sehr interessant, weil …", "Zu diesem Thema habe ich eine klare Meinung."]],
+  ["Meinung", ["Ich bin der Meinung, dass …", "Ich finde, dass …", "Meiner Meinung nach …", "Ich bin (nicht) der Ansicht, dass …"]],
+  ["Argumente", ["Ein Vorteil ist, dass …", "Dagegen spricht, dass …", "Außerdem …", "Zum Beispiel …", "Es ist zwar richtig, dass …, aber …"]],
+  ["Erfahrung", ["Ich habe selbst die Erfahrung gemacht, dass …", "Bei uns in Indien ist es so, dass …", "Aus meiner Erfahrung …"]],
+  ["Fazit", ["Deshalb finde ich, dass …", "Zusammenfassend kann man sagen, dass …", "Ich hoffe, dass … in Zukunft …"]]
+  ]},
+{ part: "Schreiben Teil 3", title: "Halbformelle E-Mail (ca. 40 Wörter)", info: "An eine Lehrerin, einen Chef, eine Firma: absagen, sich entschuldigen, um etwas bitten. Höflich, Sie-Form, kurz.",
+  groups: [
+  ["Anrede", ["Sehr geehrte Frau …, / Sehr geehrter Herr …,", "Sehr geehrte Damen und Herren,"]],
+  ["Absage / Entschuldigung", ["leider kann ich am … nicht zum Termin kommen, weil …", "Ich möchte mich für die Umstände entschuldigen.", "Es tut mir sehr leid, aber …"]],
+  ["Bitte", ["Könnten wir einen neuen Termin vereinbaren?", "Ich wäre Ihnen dankbar, wenn Sie …", "Bitte teilen Sie mir mit, ob …", "Wäre es möglich, …?"]],
+  ["Schluss", ["Vielen Dank für Ihr Verständnis.", "Ich freue mich auf Ihre Antwort.", "Mit freundlichen Grüßen\nAvishkar Mahalingpure"]]
+  ]}
+];
+
+const PRES_TOPICS = ["Sport im Alltag", "Fast Food – gesund oder ungesund?", "Haustiere", "Smartphone im Alltag", "Online einkaufen", "Wohnen in der Stadt oder auf dem Land", "Reisen – allein oder in der Gruppe?", "Feste feiern", "Fremdsprachen lernen", "Ehrenamtliche Arbeit", "Umweltschutz im Alltag", "Musik in meinem Leben", "Homeoffice", "Lernen im Internet", "Auto in der Stadt", "Schuluniform", "Fernsehen", "Ein Jahr im Ausland", "Freundschaft", "Gesund essen"];
+
+const PRES_STEPS = [
+["Thema vorstellen", "Ich möchte heute über das Thema „…“ sprechen. Zuerst …, dann …, zum Schluss …"],
+["Meine persönliche Erfahrung", "Ich habe die Erfahrung gemacht, dass … / Bei mir ist es so, dass …"],
+["Die Situation in meinem Heimatland", "In meinem Heimatland ist es üblich, dass … / Im Vergleich zu Deutschland …"],
+["Vor- und Nachteile", "Ein Vorteil ist, dass … / Ein Nachteil ist allerdings, dass … / Einerseits …, andererseits …"],
+["Meine Meinung und Abschluss", "Meiner Meinung nach … / Zusammenfassend kann ich sagen, dass … / Vielen Dank fürs Zuhören."]
+];
+// ---------- STATE & PROGRESS ----------
+const LS_KEY = "b1trainer.progress.v1";
+const DEFAULT_EXAM = "2026-10-15";
+function freshProgress() { return { v: 1, updatedAt: 0, examDate: DEFAULT_EXAM, items: {}, days: {}, writes: 0 }; }
+function loadLocal() {
+  try { const raw = localStorage.getItem(LS_KEY); if (raw) { const p = JSON.parse(raw); if (p && p.items) return Object.assign(freshProgress(), p); } } catch (e) {}
+  return freshProgress();
+}
+function saveLocal() { try { localStorage.setItem(LS_KEY, JSON.stringify(state.progress)); } catch (e) {} }
+
+const state = { tab: "verben", sub: {}, progress: loadLocal(), db: null, dbRef: null, sample: null, sampleTried: false, session: null, prev: {}, writing: null, dirty: false, saveTimer: null, ctl: null };
+
+function todayKey() { const d = new Date(); return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); }
+function touch() { state.progress.updatedAt = Date.now(); saveLocal(); scheduleDbSave(); }
+function recordAnswer(id, ok) {
+  const it = state.progress.items[id] || { c: 0, w: 0 };
+  if (ok) it.c++; else it.w++;
+  it.last = Date.now(); it.ok = !!ok;
+  state.progress.items[id] = it;
+  const t = todayKey(); const d = state.progress.days[t] || { n: 0, r: 0 };
+  d.n++; if (ok) d.r++; state.progress.days[t] = d;
+  touch();
+}
+function stat(id) { return state.progress.items[id]; }
+function isWeak(id) { const s = stat(id); return !!s && (s.ok === false || s.w >= s.c); }
+function isKnown(id) { const s = stat(id); return !!s && s.ok === true && s.c >= 2 && s.c > s.w; }
+
+// db sync (progress across devices)
+function scheduleDbSave() { clearTimeout(state.saveTimer); state.saveTimer = setTimeout(dbSave, 1500); }
+async function dbSave() {
+  if (!state.dbRef) return;
+  if (state.writing) { state.dirty = true; return; }
+  state.writing = state.dbRef.set(JSON.parse(JSON.stringify(state.progress))).catch(() => {}).finally(() => { state.writing = null; if (state.dirty) { state.dirty = false; dbSave(); } });
+}
+async function initDb() {
+  let db = null;
+  try { db = await claude.use("db"); } catch (e) { db = null; }
+  if (!db) return;
+  state.db = db; state.dbRef = db.doc("progress/main");
+  try {
+    const snap = await state.dbRef.get();
+    if (snap.exists) {
+      const remote = snap.data();
+      if ((remote.updatedAt || 0) > (state.progress.updatedAt || 0)) { state.progress = Object.assign(freshProgress(), remote); saveLocal(); render(); toast("Fortschritt vom anderen Gerät geladen"); }
+      else if ((state.progress.updatedAt || 0) > (remote.updatedAt || 0)) { dbSave(); }
+    } else if (state.progress.updatedAt) { dbSave(); }
+  } catch (e) {}
+}
+async function initSample() {
+  try { state.sample = await claude.use("sample"); } catch (e) { state.sample = null; }
+  state.sampleTried = true;
+  if (state.tab === "schreiben") render();
+}
+if (window.claude && typeof window.claude.use === "function") { initDb(); initSample(); } else { state.sampleTried = true; }
+
+// ---------- HELPERS ----------
+const $ = (s, r) => (r || document).querySelector(s);
+function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])); }
+function mark(s) { return esc(s).replace(/\*([^*]+)\*/g, "<b>$1</b>"); }
+function norm(s) { return String(s || "").trim().toLowerCase().replace(/ä/g, "ae").replace(/ö/g, "oe").replace(/ü/g, "ue").replace(/ß/g, "ss"); }
+function shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+function nl(s) { return esc(s).replace(/\n/g, "<br>"); }
+let toastTimer;
+function toast(msg) { const t = $("#toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove("show"), 2200); }
+function daysLeft() {
+  const d = new Date((state.progress.examDate || DEFAULT_EXAM) + "T00:00:00");
+  const now = new Date(); now.setHours(0, 0, 0, 0);
+  return Math.round((d - now) / 864e5);
+}
+// choose a session of n ids: weak first, then unseen, then the rest (least recently seen)
+function buildSession(ids, n, weakOnly) {
+  if (weakOnly) { const w = shuffle(ids.filter(isWeak)); return w.slice(0, n); }
+  const weak = shuffle(ids.filter(isWeak));
+  const unseen = shuffle(ids.filter(id => !stat(id)));
+  const rest = ids.filter(id => stat(id) && !isWeak(id)).sort((a, b) => (stat(a).last || 0) - (stat(b).last || 0));
+  const out = [];
+  const take = (arr, k) => { for (const id of arr) { if (out.length >= n || k <= 0) break; if (!out.includes(id)) { out.push(id); k--; } } };
+  take(weak, Math.min(weak.length, Math.ceil(n / 2)));
+  take(unseen, n - out.length);
+  take(shuffle(rest.slice(0, n * 2)), n - out.length);
+  take(weak, n - out.length);
+  return shuffle(out);
+}
+
+// ---------- NAV ----------
+const TABS = [["verben", "V", "Verben"], ["woerter", "W", "Wörter"], ["grammatik", "G", "Grammatik"], ["redemittel", "R", "Redemittel"], ["schreiben", "✎", "Schreiben"], ["stand", "%", "Stand"]];
+function renderNav() {
+  $("#nav").innerHTML = TABS.map(t => `<button data-tab="${t[0]}" ${state.tab === t[0] ? 'aria-current="page"' : ""}><span class="ic">${t[1]}</span>${t[2]}</button>`).join("");
+}
+$("#nav").addEventListener("click", e => { const b = e.target.closest("[data-tab]"); if (!b) return; state.tab = b.dataset.tab; state.session = null; render(); window.scrollTo(0, 0); });
+function renderHead() {
+  const n = daysLeft();
+  const txt = n > 1 ? `<strong>${n} Tage</strong> bis zur Prüfung` : n === 1 ? "<strong>Morgen</strong> ist die Prüfung" : n === 0 ? "<strong>Heute</strong> ist die Prüfung" : "Prüfung vorbei – gut gemacht";
+  $("#examBox").innerHTML = `${txt}<br><button data-act="goStand">Datum ändern</button>`;
+}
+$("#examBox").addEventListener("click", e => { if (e.target.closest("[data-act=goStand]")) { state.tab = "stand"; render(); } });
+
+function render() {
+  renderNav(); renderHead();
+  const v = $("#view");
+  const fn = VIEWS[state.tab] || VIEWS.verben;
+  v.innerHTML = fn();
+  const g = $("input.gap", v); if (g) g.focus();
+}
+$("#view").addEventListener("click", e => {
+  const el = e.target.closest("[data-act]"); if (!el) return;
+  const fn = ACTIONS[el.dataset.act]; if (fn) fn(el.dataset.arg, el);
+});
+$("#view").addEventListener("keydown", e => {
+  if (e.key !== "Enter") return;
+  if (e.target.matches("input.gap")) { e.preventDefault(); ACTIONS.vCheck(); }
+  else if (e.target.matches("[data-enter]")) { e.preventDefault(); ACTIONS[e.target.dataset.enter](); }
+});
+
+const VIEWS = {}; const ACTIONS = {};
+
+// ---------- VERBEN ----------
+VIEWS.verben = function () {
+  const sub = state.sub.verben || "drill";
+  let html = `<div class="tabs2"><button class="chip ${sub === "drill" ? "on" : ""}" data-act="vSub" data-arg="drill">Üben</button><button class="chip ${sub === "list" ? "on" : ""}" data-act="vSub" data-arg="list">Liste</button></div>`;
+  if (sub === "list") return html + verbList();
+  const s = state.session;
+  if (!s || s.kind !== "v") {
+    const weak = VERBS.filter(v => isWeak(v.id)).length, known = VERBS.filter(v => isKnown(v.id)).length;
+    return html + `<div class="card"><h2>Verben mit Präpositionen</h2>
+      <p class="muted">${VERBS.length} Verben. Tipp die Präposition in die Lücke, dann wähle den Kasus. Frageform und da-Form kommen im Feedback.</p>
+      <div class="row" style="margin:6px 0 14px"><span class="pill ok">${known} sicher</span><span class="pill weak">${weak} schwach</span><span class="chip">${VERBS.length - known - weak} offen</span></div>
+      <div class="row"><button class="btn" data-act="vStart" data-arg="mix">10 Verben üben</button>${weak ? `<button class="btn ghost" data-act="vStart" data-arg="weak">Nur schwache (${Math.min(weak, 10)})</button>` : ""}</div></div>`;
+  }
+  if (s.i >= s.ids.length) return html + sessionSummary(s, "vStart", id => { const v = VERBS.find(x => x.id === id); return `${v.verb} <b>${v.prep}</b> + ${v.kase === "A" ? "Akk" : "Dat"}`; });
+  const v = VERBS.find(x => x.id === s.ids[s.i]);
+  const parts = v.sentence.split("___");
+  html += `<div class="card drill"><div class="meta"><span>${s.i + 1} / ${s.ids.length}</span><span>${isWeak(v.id) ? '<span class="pill weak">schwach</span>' : ""} ${esc(v.verb)}</span></div>`;
+  if (s.stage === "prep") {
+    html += `<div class="sentence">${esc(parts[0])}<input class="gap" data-gap autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" aria-label="Präposition">${esc(parts[1])}</div>
+      <div class="hint">${esc(v.en)}</div>
+      <div class="row"><button class="btn" data-act="vCheck">Prüfen</button><button class="btn ghost" data-act="vReveal">Weiß ich nicht</button></div>`;
+  } else {
+    const okCls = s.prepOk ? "right" : "wrong";
+    html += `<div class="sentence">${esc(parts[0])}${s.prepOk ? "" : `<span class="gapword wrong">${esc(s.given || "—")}</span> `}<span class="gapword right">${esc(v.prep)}</span>${esc(parts[1])}</div>`;
+    if (s.stage === "case") {
+      html += `<div class="hint">${s.prepOk ? "Richtig. " : `Die Präposition ist <b>${esc(v.prep)}</b>. `}Und welcher Kasus?</div>
+        <div class="opts"><button data-act="vCase" data-arg="A">Akkusativ</button><button data-act="vCase" data-arg="D">Dativ</button></div>`;
+    } else {
+      const ok = s.prepOk && s.caseOk;
+      html += `<div class="fb ${ok ? "good" : "bad"}"><div class="big">${esc(v.verb)} <b>${esc(v.prep)}</b> + <span class="pill ${v.kase === "A" ? "akk" : "dat"}">${v.kase === "A" ? "Akkusativ" : "Dativ"}</span></div>
+        ${s.caseOk ? "" : `<div>Kasus falsch: ${esc(v.prep)} + ${v.kase === "A" ? "Akkusativ" : "Dativ"}.</div>`}
+        <dl><dt>Sache</dt><dd>${woForm(v.prep).charAt(0).toUpperCase() + woForm(v.prep).slice(1)}? → ${daForm(v.prep)}</dd>
+        <dt>Person</dt><dd>${personQ(v)} → ${v.prep} ihn/sie … </dd>
+        <dt>Englisch</dt><dd>${esc(v.en)}</dd></dl></div>
+        <div class="row"><button class="btn" data-act="vNext" data-enter="vNext" autofocus>Weiter</button></div>`;
+    }
+  }
+  return html + "</div>";
+};
+function verbList() {
+  const f = state.sub.vFilter || "alle";
+  const preps = [...new Set(VERBS.map(v => v.prep))].sort();
+  let html = `<div class="row" style="margin-bottom:10px">${["alle", "schwach", ...preps].map(p => `<button class="chip ${f === p ? "on" : ""}" data-act="vFilter" data-arg="${p}">${p}</button>`).join("")}</div><div class="card list">`;
+  const rows = VERBS.filter(v => f === "alle" ? true : f === "schwach" ? isWeak(v.id) : v.prep === f);
+  if (!rows.length) html += `<div class="empty">Nichts hier – keine schwachen Verben. Weiter so.</div>`;
+  html += rows.map(v => `<div class="item"><span class="de">${esc(v.verb)} <b>${esc(v.prep)}</b> <span class="pill ${v.kase === "A" ? "akk" : "dat"}">${v.kase === "A" ? "Akk" : "Dat"}</span></span><span>${isWeak(v.id) ? '<span class="pill weak">schwach</span>' : isKnown(v.id) ? '<span class="pill ok">sicher</span>' : ""}</span><span class="en">${esc(v.en)} · ${woForm(v.prep)}? / ${daForm(v.prep)}</span><span class="ex">${esc(v.sentence.replace("___", v.prep))}</span></div>`).join("");
+  return html + "</div>";
+}
+ACTIONS.vSub = a => { state.sub.verben = a; state.session = null; render(); };
+ACTIONS.vFilter = a => { state.sub.vFilter = a; render(); };
+ACTIONS.vStart = a => {
+  const ids = buildSession(VERBS.map(v => v.id), 10, a === "weak");
+  if (!ids.length) { toast("Keine schwachen Verben"); return; }
+  state.session = { kind: "v", ids, i: 0, results: [], stage: "prep" }; state.sub.verben = "drill"; render();
+};
+ACTIONS.vCheck = () => {
+  const s = state.session; if (!s || s.stage !== "prep") return;
+  const inp = $("input.gap"); const given = inp ? inp.value : "";
+  if (!given.trim()) { inp && inp.focus(); return; }
+  const v = VERBS.find(x => x.id === s.ids[s.i]);
+  s.given = given.trim(); s.prepOk = norm(given) === norm(v.prep); s.stage = "case"; render();
+};
+ACTIONS.vReveal = () => { const s = state.session; s.given = ""; s.prepOk = false; s.stage = "case"; render(); };
+ACTIONS.vCase = a => {
+  const s = state.session; if (!s || s.stage !== "case") return;
+  const v = VERBS.find(x => x.id === s.ids[s.i]);
+  s.caseOk = a === v.kase; s.stage = "fb";
+  const ok = s.prepOk && s.caseOk; s.results.push({ id: v.id, ok }); recordAnswer(v.id, ok); render();
+  const b = $("[data-act=vNext]"); if (b) b.focus();
+};
+ACTIONS.vNext = () => { const s = state.session; if (!s || s.stage !== "fb") return; s.i++; s.stage = "prep"; render(); };
+
+function sessionSummary(s, restartAct, label) {
+  const right = s.results.filter(r => r.ok).length, wrong = s.results.filter(r => !r.ok);
+  return `<div class="card"><h2>Runde fertig</h2><div class="row" style="align-items:baseline;gap:14px"><span class="bignum">${right}/${s.results.length}</span><span class="muted">richtig</span></div>
+    ${wrong.length ? `<h3>Nochmal anschauen</h3><ul class="phrases">${wrong.map(r => `<li>${label(r.id)}</li>`).join("")}</ul>` : `<p class="muted">Alles richtig. Die nächste Runde nimmt neue oder ältere Wörter.</p>`}
+    <div class="row" style="margin-top:12px"><button class="btn" data-act="${restartAct}" data-arg="mix">Neue Runde</button>${wrong.length ? `<button class="btn ghost" data-act="${restartAct}" data-arg="weak">Nur schwache</button>` : ""}</div></div>`;
+}
+
+// ---------- WÖRTER ----------
+VIEWS.woerter = function () {
+  const sub = state.sub.woerter || "list"; const f = state.sub.wTopic || "alle";
+  let html = `<div class="tabs2"><button class="chip ${sub === "list" ? "on" : ""}" data-act="wSub" data-arg="list">Lernen</button><button class="chip ${sub === "quiz" ? "on" : ""}" data-act="wSub" data-arg="quiz">Abfragen</button></div>`;
+  html += `<div class="row" style="margin-bottom:10px">${["alle", "schwach", ...TOPICS].map(t => `<button class="chip ${f === t ? "on" : ""}" data-act="wTopic" data-arg="${esc(t)}">${esc(t)}</button>`).join("")}</div>`;
+  const pool = VOCAB.filter(w => f === "alle" ? true : f === "schwach" ? isWeak(w.id) : w.topic === f);
+  if (sub === "list") {
+    if (!pool.length) return html + `<div class="card"><div class="empty">Keine schwachen Wörter im Moment.</div></div>`;
+    return html + `<div class="card list">${pool.map(w => `<div class="item"><span class="de">${esc(w.de)}</span><span>${isWeak(w.id) ? '<span class="pill weak">schwach</span>' : isKnown(w.id) ? '<span class="pill ok">sicher</span>' : ""}</span><span class="en">${esc(w.en)}${f === "alle" || f === "schwach" ? " · " + esc(w.topic) : ""}</span><span class="ex">${mark(w.ex)}</span></div>`).join("")}</div>`;
+  }
+  const s = state.session;
+  if (!s || s.kind !== "w") {
+    return html + `<div class="card"><h2>Wörter abfragen</h2><p class="muted">Du siehst die englische Bedeutung, sagst dir das deutsche Wort laut vor und deckst dann auf. Sei ehrlich beim Bewerten – nur so landen die richtigen Wörter in „schwach“.</p>
+      <p class="small muted">${pool.length} Wörter in dieser Auswahl.</p>
+      <div class="row"><button class="btn" data-act="wStart" data-arg="mix">10 Wörter</button>${pool.some(w => isWeak(w.id)) ? `<button class="btn ghost" data-act="wStart" data-arg="weak">Nur schwache</button>` : ""}</div></div>`;
+  }
+  if (s.i >= s.ids.length) return html + sessionSummary(s, "wStart", id => { const w = VOCAB.find(x => x.id === id); return `${esc(w.de)} – ${esc(w.en)}`; });
+  const w = VOCAB.find(x => x.id === s.ids[s.i]);
+  html += `<div class="card drill"><div class="meta"><span>${s.i + 1} / ${s.ids.length}</span><span>${esc(w.topic)}</span></div>`;
+  if (!s.shown) {
+    html += `<div class="sentence">${esc(w.en)}</div><div class="hint">Wie heißt das auf Deutsch? Mit Artikel und Plural, wenn es ein Nomen ist.</div><div class="row"><button class="btn" data-act="wShow" data-enter="wShow">Aufdecken</button></div>`;
+  } else {
+    html += `<div class="sentence">${esc(w.de)}</div><div class="fb note"><div class="big">${mark(w.ex)}</div><div class="muted small">Ein Satz, den du in der Präsentation oder im Forumsbeitrag verwenden kannst.</div></div>
+      <div class="row"><button class="btn" data-act="wGrade" data-arg="1">Wusste ich</button><button class="btn ghost" data-act="wGrade" data-arg="0">Nochmal üben</button></div>`;
+  }
+  return html + "</div>";
+};
+ACTIONS.wSub = a => { state.sub.woerter = a; state.session = null; render(); };
+ACTIONS.wTopic = a => { state.sub.wTopic = a; state.session = null; render(); };
+ACTIONS.wStart = a => {
+  const f = state.sub.wTopic || "alle";
+  const pool = VOCAB.filter(w => f === "alle" || f === "schwach" ? true : w.topic === f).map(w => w.id);
+  const ids = buildSession(pool, 10, a === "weak" || f === "schwach");
+  if (!ids.length) { toast("Keine schwachen Wörter"); return; }
+  state.session = { kind: "w", ids, i: 0, results: [], shown: false }; state.sub.woerter = "quiz"; render();
+};
+ACTIONS.wShow = () => { const s = state.session; if (!s || s.shown) return; s.shown = true; render(); };
+ACTIONS.wGrade = a => { const s = state.session; if (!s || !s.shown) return; const ok = a === "1"; s.results.push({ id: s.ids[s.i], ok }); recordAnswer(s.ids[s.i], ok); s.i++; s.shown = false; render(); };
+
+// ---------- GRAMMATIK ----------
+VIEWS.grammatik = function () {
+  const f = state.sub.gTopic || "alle";
+  let html = `<div class="row" style="margin-bottom:10px">${["alle", "schwach", ...GTOPICS].map(t => `<button class="chip ${f === t ? "on" : ""}" data-act="gTopic" data-arg="${esc(t)}">${esc(t)}</button>`).join("")}</div>`;
+  const pool = GRAMMAR.filter(g => f === "alle" ? true : f === "schwach" ? isWeak(g.id) : g.t === f);
+  const s = state.session;
+  if (!s || s.kind !== "g") {
+    return html + `<div class="card"><h2>Grammatik</h2><p class="muted">Kurze Aufgaben mit Erklärung – genau die Strukturen, die in Sprachbausteinen und beim Schreiben Punkte bringen.</p>
+      <p class="small muted">${pool.length} Aufgaben in dieser Auswahl.</p>
+      <div class="row"><button class="btn" data-act="gStart" data-arg="mix">10 Aufgaben</button>${pool.some(g => isWeak(g.id)) ? `<button class="btn ghost" data-act="gStart" data-arg="weak">Nur schwache</button>` : ""}</div></div>`;
+  }
+  if (s.i >= s.ids.length) return html + sessionSummary(s, "gStart", id => { const g = GRAMMAR.find(x => x.id === id); return esc(g.q.replace("___", g.o[g.a])); });
+  const g = GRAMMAR.find(x => x.id === s.ids[s.i]);
+  html += `<div class="card drill"><div class="meta"><span>${s.i + 1} / ${s.ids.length}</span><span>${esc(g.t)}</span></div>`;
+  const answered = s.picked != null;
+  const q = g.q.includes("___") ? esc(g.q).replace(/___/g, answered ? `<span class="gapword right">${esc(g.o[g.a])}</span>` : "<span class=\"gapword\">&nbsp;&nbsp;&nbsp;&nbsp;</span>") : esc(g.q);
+  html += `<div class="sentence">${q}</div><div class="opts">${s.order.map(idx => `<button data-act="gPick" data-arg="${idx}" ${answered ? "disabled" : ""} class="${answered && idx === g.a ? "right" : answered && idx === s.picked ? "wrong" : ""}">${esc(g.o[idx])}</button>`).join("")}</div>`;
+  if (answered) html += `<div class="fb ${s.picked === g.a ? "good" : "bad"} explain">${esc(g.e)}</div><div class="row"><button class="btn" data-act="gNext" data-enter="gNext">Weiter</button></div>`;
+  return html + "</div>";
+};
+ACTIONS.gTopic = a => { state.sub.gTopic = a; state.session = null; render(); };
+ACTIONS.gStart = a => {
+  const f = state.sub.gTopic || "alle";
+  const pool = GRAMMAR.filter(g => f === "alle" || f === "schwach" ? true : g.t === f).map(g => g.id);
+  const ids = buildSession(pool, 10, a === "weak" || f === "schwach");
+  if (!ids.length) { toast("Keine schwachen Aufgaben"); return; }
+  const g0 = GRAMMAR.find(x => x.id === ids[0]);
+  state.session = { kind: "g", ids, i: 0, results: [], picked: null, order: shuffle(g0.o.map((_, i) => i)) }; render();
+};
+ACTIONS.gPick = a => {
+  const s = state.session; if (!s || s.picked != null) return;
+  const g = GRAMMAR.find(x => x.id === s.ids[s.i]); s.picked = Number(a);
+  const ok = s.picked === g.a; s.results.push({ id: g.id, ok }); recordAnswer(g.id, ok); render();
+  const b = $("[data-act=gNext]"); if (b) b.focus();
+};
+ACTIONS.gNext = () => { const s = state.session; if (!s || s.picked == null) return; s.i++; s.picked = null; const g = GRAMMAR.find(x => x.id === s.ids[s.i]); if (g) s.order = shuffle(g.o.map((_, i) => i)); render(); };
+
+// ---------- REDEMITTEL ----------
+VIEWS.redemittel = function () {
+  const topic = state.sub.presTopic;
+  let html = `<div class="card"><h2>Präsentation in fünf Schritten</h2><p class="muted">Sprechen Teil 2 hat immer dieselben fünf Folien. Lern die Sätze auswendig, dann musst du in der Prüfung nur noch das Thema einsetzen.</p>
+    <ol class="steps">${PRES_STEPS.map(s => `<li><div><b>${esc(s[0])}</b><span>${esc(s[1])}</span></div></li>`).join("")}</ol>
+    <hr class="divider"><div class="row between"><span>${topic ? `Dein Thema: <b class="kw">${esc(topic)}</b>` : "Zufallsthema zum Üben"}</span><button class="btn sm ghost" data-act="presTopic">${topic ? "Anderes Thema" : "Thema ziehen"}</button></div></div>`;
+  html += REDEMITTEL.map((r, i) => `<div class="card"><h2>${esc(r.part)}</h2><p class="muted small" style="margin-bottom:4px">${esc(r.title)} – ${esc(r.info)}</p>
+    ${r.groups.map((g, j) => `<details ${i === 1 && j === 0 ? "open" : ""}><summary>${esc(g[0])}</summary><ul class="phrases">${g[1].map(p => `<li>${nl(p)}</li>`).join("")}</ul></details>`).join("")}</div>`).join("");
+  return html;
+};
+ACTIONS.presTopic = () => { const cur = state.sub.presTopic; let t; do { t = PRES_TOPICS[Math.floor(Math.random() * PRES_TOPICS.length)]; } while (t === cur && PRES_TOPICS.length > 1); state.sub.presTopic = t; render(); };
+
+// ---------- SCHREIBEN (Claude-Check) ----------
+const TEXT_KINDS = {
+  email1: { label: "Informelle E-Mail (Teil 1)", brief: "Schreiben Teil 1: informelle E-Mail an eine Freundin / einen Freund, ca. 80 Wörter, drei Inhaltspunkte müssen behandelt werden, mit Anrede und Gruß." },
+  meinung: { label: "Meinung / Forumsbeitrag (Teil 2)", brief: "Schreiben Teil 2: Beitrag in einem Gästebuch oder Forum zu einer Sendung, ca. 80 Wörter, eigene Meinung mit Begründung und Beispiel." },
+  email3: { label: "Halbformelle E-Mail (Teil 3)", brief: "Schreiben Teil 3: halbformelle E-Mail (an eine Lehrerin, einen Chef, eine Firma), ca. 40 Wörter, höflich, Sie-Form, alle Inhaltspunkte, mit passender Anrede und Grußformel." },
+  pres: { label: "Präsentation (Sprechen Teil 2)", brief: "Sprechen Teil 2: Präsentation zu einem Thema, ca. 3 Minuten, mit den fünf Teilen: Thema vorstellen, persönliche Erfahrung, Situation im Heimatland, Vor- und Nachteile, Meinung und Abschluss." }
+};
+VIEWS.schreiben = function () {
+  const mode = state.sub.sMode || "satz";
+  let html = `<div class="tabs2"><button class="chip ${mode === "satz" ? "on" : ""}" data-act="sMode" data-arg="satz">Satz mit Wort</button><button class="chip ${mode === "text" ? "on" : ""}" data-act="sMode" data-arg="text">Text korrigieren</button></div>`;
+  if (!state.sample) {
+    html += `<div class="fb note small">${state.sampleTried ? "Der Claude-Check ist in dieser Ansicht nicht verfügbar. Schreib deinen Satz oder Text trotzdem hier und kopiere ihn dann in den Chat – dort korrigiere ich ihn." : "Verbinde mit Claude …"}</div>`;
+  }
+  if (mode === "satz") {
+    const it = state.sub.sItem || pickWritingItem();
+    state.sub.sItem = it;
+    html += `<div class="card"><h2>Schreib einen Satz mit …</h2>
+      <div class="sentence">${esc(it.label)}</div><div class="hint">${esc(it.en)}${it.topic ? " · " + esc(it.topic) : ""}</div>
+      <textarea id="sIn" placeholder="Dein Satz …" style="min-height:90px">${esc(state.sub.sText || "")}</textarea>
+      <div class="row" style="margin-top:10px"><button class="btn" data-act="sCheck" ${state.sample ? "" : "disabled"}>Prüfen lassen</button><button class="btn ghost" data-act="sNew">Anderes Wort</button></div>
+      <div id="sOut" style="margin-top:12px"></div></div>`;
+    return html;
+  }
+  const kind = state.sub.tKind || "email1";
+  html += `<div class="card"><h2>Text korrigieren</h2><p class="muted small">Schreib wie in der Prüfung – ohne Wörterbuch, mit Zeitlimit. Dann bekommst du den korrigierten Text, die wichtigsten Fehler mit Erklärung und eine Einschätzung nach den Goethe-Kriterien.</p>
+    <div class="row" style="margin-bottom:8px"><select id="tKind" data-act="tKind">${Object.keys(TEXT_KINDS).map(k => `<option value="${k}" ${k === kind ? "selected" : ""}>${esc(TEXT_KINDS[k].label)}</option>`).join("")}</select></div>
+    ${kind === "pres" ? `<div class="row" style="margin-bottom:8px"><span class="small muted">Thema: ${esc(state.sub.presTopic || "(zieh eins unter Redemittel)")}</span></div>` : ""}
+    <textarea id="tIn" placeholder="${kind === "pres" ? "Schreib deine Präsentation so auf, wie du sie sprechen würdest …" : "Dein Text …"}">${esc(state.sub.tText || "")}</textarea>
+    <div class="row between" style="margin-top:10px"><div class="row"><button class="btn" data-act="tCheck" ${state.sample ? "" : "disabled"}>Korrigieren</button><button class="btn ghost" data-act="tStop" id="tStop" hidden>Stopp</button></div><span class="small muted" id="wc"></span></div>
+    <div id="tOut" class="out" style="margin-top:12px"></div></div>`;
+  setTimeout(updateWc, 0);
+  return html;
+};
+function pickWritingItem() {
+  const useVerb = Math.random() < 0.55;
+  if (useVerb) { const v = VERBS[Math.floor(Math.random() * VERBS.length)]; return { id: v.id, label: `${v.verb} ${v.prep} + ${v.kase === "A" ? "Akk" : "Dat"}`, en: v.en, ex: v.sentence.replace("___", v.prep) }; }
+  const w = VOCAB[Math.floor(Math.random() * VOCAB.length)]; return { id: w.id, label: w.de, en: w.en, topic: w.topic, ex: w.ex.replace(/\*/g, "") };
+}
+function updateWc() { const t = $("#tIn"), w = $("#wc"); if (!t || !w) return; const n = t.value.trim() ? t.value.trim().split(/\s+/).length : 0; w.textContent = n + " Wörter"; }
+document.addEventListener("input", e => { if (e.target.id === "tIn") { state.sub.tText = e.target.value; updateWc(); } if (e.target.id === "sIn") state.sub.sText = e.target.value; });
+document.addEventListener("change", e => { if (e.target.id === "tKind") { state.sub.tKind = e.target.value; render(); } });
+ACTIONS.sMode = a => { state.sub.sMode = a; render(); };
+ACTIONS.sNew = () => { state.sub.sItem = pickWritingItem(); state.sub.sText = ""; render(); };
+function errCopy(e) {
+  const c = e && e.code;
+  if (c === "not_granted" || c === "sampling_disabled" || c === "not_declared" || c === "capability_disabled") { state.sample = null; return "Der Claude-Check ist für diese Ansicht nicht erlaubt. Kopiere den Text in den Chat."; }
+  if (c === "rate_limited") return "Zu viele Anfragen gerade – versuch es in ein paar Minuten noch einmal.";
+  if (c === "cancelled") return "";
+  if (c === "refused") return "Dieser Text konnte nicht geprüft werden. Formuliere ihn anders.";
+  if (c === "invalid_json") return "Die Antwort war unvollständig. Bitte noch einmal auf „Prüfen lassen“ tippen.";
+  return "Die Verbindung ist abgebrochen. Bitte noch einmal versuchen.";
+}
+ACTIONS.sCheck = async () => {
+  const s = state.sample; if (!s) return;
+  const it = state.sub.sItem; const text = ($("#sIn") || {}).value || "";
+  if (!text.trim()) { toast("Erst einen Satz schreiben"); return; }
+  const out = $("#sOut"); const btn = $("[data-act=sCheck]");
+  out.innerHTML = `<div class="fb note">Wird geprüft …</div>`; btn.disabled = true;
+  const prompt = `Du bist ein erfahrener Deutschlehrer und bereitest einen Lernenden auf das Goethe-Zertifikat B1 vor. Der Lernende sollte einen eigenen Satz mit „${it.label}“ schreiben (Bedeutung: ${it.en}).
+Satz des Lernenden: "${text.trim()}"
+Prüfe: Ist der Satz grammatisch korrekt (Wortstellung, Kasus, Endungen, Präposition) und ist „${it.label}“ richtig und sinnvoll verwendet? Falsche Groß-/Kleinschreibung zählt als Fehler.
+Antworte NUR mit einem JSON-Objekt: {"correct": true oder false, "corrected": "der korrigierte Satz (oder unverändert, wenn korrekt)", "note": "1-2 short sentences in English: what was wrong and why, or what is good", "better": "optional: eine natürlichere B1-Formulierung, sonst leerer String"}`;
+  try {
+    const r = await s.json(prompt, { modelTier: "quick" });
+    const ok = !!(r && r.correct);
+    state.progress.writes = (state.progress.writes || 0) + 1; recordAnswer(it.id, ok);
+    out.innerHTML = `<div class="fb ${ok ? "good" : "bad"}"><div class="big">${esc(r.corrected || text)}</div><div>${esc(r.note || "")}</div>${r.better && r.better.trim() && r.better.trim() !== (r.corrected || "").trim() ? `<div class="small muted" style="margin-top:6px">Natürlicher: <i>${esc(r.better)}</i></div>` : ""}<div class="small muted" style="margin-top:6px">Beispiel: <i>${esc(it.ex)}</i></div></div><div class="row"><button class="btn" data-act="sNew">Nächstes Wort</button></div>`;
+  } catch (e) { const m = errCopy(e); out.innerHTML = m ? `<div class="fb bad">${esc(m)}</div>` : ""; }
+  finally { btn.disabled = !state.sample; }
+};
+ACTIONS.tKind = () => {};
+ACTIONS.tStop = () => { if (state.ctl) state.ctl.abort(); };
+ACTIONS.tCheck = async () => {
+  const s = state.sample; if (!s) return;
+  const kind = state.sub.tKind || "email1"; const text = ($("#tIn") || {}).value || "";
+  if (text.trim().split(/\s+/).length < 8) { toast("Der Text ist noch sehr kurz"); return; }
+  const out = $("#tOut"); const btn = $("[data-act=tCheck]"); const stop = $("#tStop");
+  out.textContent = "Wird gelesen … (das dauert bis zu einer Minute)"; btn.disabled = true; stop.hidden = false;
+  state.ctl = new AbortController();
+  const topicLine = kind === "pres" && state.sub.presTopic ? `Thema der Präsentation: „${state.sub.presTopic}“.\n` : "";
+  const prompt = `Du bist Prüfer für das Goethe-Zertifikat B1. Ein Lernender (Muttersprache: nicht Deutsch, Niveau B1, Prüfung in wenigen Tagen) hat folgende Aufgabe bearbeitet.
+Aufgabe: ${TEXT_KINDS[kind].brief}
+${topicLine}Text des Lernenden:
+"""
+${text.trim().slice(0, 6000)}
+"""
+Gib Feedback in genau diesem Aufbau, ohne Markdown-Überschriften mit #, nur nummerierte Abschnitte:
+1. Korrigierter Text – der ganze Text mit allen Korrekturen, bleib so nah wie möglich am Original.
+2. Fehler und Erklärungen – höchstens 8 wichtigste Punkte, je eine Zeile: „falsch → richtig – kurze Erklärung auf Englisch“.
+3. Bewertung nach Goethe-Kriterien – je ein Satz zu: Erfüllung der Aufgabe (alle Punkte? Länge? Textsorte?), Kohärenz (Verknüpfung, Konnektoren), Wortschatz, Strukturen (Nebensätze, Kasus, Konjunktiv II …).
+4. Zwei konkrete Tipps für die nächste Version.
+5. Einschätzung – reicht das für B1? Ein Satz.
+Sei ehrlich, aber ermutigend. Erklärungen kurz und auf Englisch, alles andere auf Deutsch.`;
+  try {
+    const r = await s(prompt, { signal: state.ctl.signal, onText: ({ text }) => { out.textContent = text; }, cache: false });
+    out.textContent = r.text + (r.truncated ? "\n\n(Die Antwort wurde gekürzt – nächstes Mal einen kürzeren Text schicken.)" : "");
+    state.progress.writes = (state.progress.writes || 0) + 1; touch();
+  } catch (e) { const m = errCopy(e); out.textContent = (e && e.text ? e.text + "\n\n" : "") + m; }
+  finally { btn.disabled = !state.sample; stop.hidden = true; state.ctl = null; }
+};
+
+// ---------- STAND ----------
+VIEWS.stand = function () {
+  const p = state.progress;
+  const mods = [["Verben + Präpositionen", VERBS.map(v => v.id)], ["Wörter", VOCAB.map(w => w.id)], ["Grammatik", GRAMMAR.map(g => g.id)]];
+  const dayKeys = Object.keys(p.days).sort();
+  let streak = 0; { const d = new Date(); for (;;) { const k = d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); if (p.days[k]) { streak++; d.setDate(d.getDate() - 1); } else if (k === todayKey()) { d.setDate(d.getDate() - 1); } else break; if (streak > 400) break; } }
+  const today = p.days[todayKey()] || { n: 0, r: 0 };
+  const total = dayKeys.reduce((a, k) => a + p.days[k].n, 0);
+  let html = `<div class="card"><div class="row" style="gap:24px;align-items:flex-start"><div><div class="bignum">${daysLeft()}</div><div class="muted small">Tage bis zur Prüfung</div></div><div><div class="bignum">${today.n}</div><div class="muted small">Antworten heute</div></div><div><div class="bignum">${streak}</div><div class="muted small">Tage in Folge</div></div></div>
+    <hr class="divider"><div class="row"><label class="small muted" for="examDate">Prüfungsdatum</label><input type="date" id="examDate" value="${esc(p.examDate || DEFAULT_EXAM)}"></div></div>`;
+  html += `<div class="card"><h2>Module</h2>`;
+  html += mods.map(m => {
+    const ids = m[1]; const seen = ids.filter(id => stat(id)).length; const known = ids.filter(isKnown).length; const weak = ids.filter(isWeak).length;
+    const c = ids.reduce((a, id) => a + (stat(id) ? stat(id).c : 0), 0), w = ids.reduce((a, id) => a + (stat(id) ? stat(id).w : 0), 0);
+    const acc = c + w ? Math.round(100 * c / (c + w)) : 0;
+    return `<div class="stat"><span>${m[0]}<br><span class="small muted">${seen} von ${ids.length} gesehen · ${known} sicher · ${weak} schwach</span></span><span class="n">${c + w ? acc + "%" : "–"}</span><div class="bar"><i style="width:${Math.round(100 * known / ids.length)}%"></i></div></div>`;
+  }).join("");
+  html += `<p class="small muted" style="margin-top:10px">Balken = Anteil „sicher“ (mindestens zweimal richtig, zuletzt richtig). Insgesamt ${total} Antworten, ${p.writes || 0} Texte und Sätze geprüft.</p></div>`;
+  const weakV = VERBS.filter(v => isWeak(v.id)), weakW = VOCAB.filter(w => isWeak(w.id)), weakG = GRAMMAR.filter(g => isWeak(g.id));
+  html += `<div class="card"><h2>Schwache Stellen</h2>`;
+  if (!weakV.length && !weakW.length && !weakG.length) html += `<p class="muted">Noch nichts – oder alles sitzt. Nach ein paar Runden erscheint hier, was du wiederholen solltest.</p>`;
+  if (weakV.length) html += `<h3>Verben (${weakV.length})</h3><ul class="phrases">${weakV.slice(0, 12).map(v => `<li>${esc(v.verb)} <b>${esc(v.prep)}</b> + ${v.kase === "A" ? "Akk" : "Dat"}</li>`).join("")}</ul><button class="btn sm" data-act="goDrill" data-arg="v">Schwache Verben üben</button>`;
+  if (weakW.length) html += `<h3>Wörter (${weakW.length})</h3><ul class="phrases">${weakW.slice(0, 12).map(w => `<li>${esc(w.de)} – ${esc(w.en)}</li>`).join("")}</ul><button class="btn sm" data-act="goDrill" data-arg="w">Schwache Wörter üben</button>`;
+  if (weakG.length) html += `<h3>Grammatik (${weakG.length})</h3><ul class="phrases">${weakG.slice(0, 12).map(g => `<li>${esc(g.t)}: ${esc(g.q.replace("___", g.o[g.a]))}</li>`).join("")}</ul><button class="btn sm" data-act="goDrill" data-arg="g">Schwache Aufgaben üben</button>`;
+  html += `</div><div class="card"><h2>Plan bis zur Prüfung</h2><ol class="steps">
+    <li><div><b>Jeden Tag</b><span>10 Verben, 10 Wörter, 10 Grammatikaufgaben – zuerst die schwachen.</span></div></li>
+    <li><div><b>Jeden Tag ein Text</b><span>Abwechselnd E-Mail, Forumsbeitrag, formelle E-Mail – unter „Schreiben“ prüfen lassen, dann einmal neu schreiben.</span></div></li>
+    <li><div><b>Alle zwei Tage sprechen</b><span>Thema ziehen, 3 Minuten mit dem Handy aufnehmen, anhören, unter „Schreiben → Präsentation“ Feedback holen.</span></div></li>
+    <li><div><b>Letzte 5 Tage</b><span>Modelltests von goethe.de mit Zeit. Die letzten zwei Tage nur Redemittel und schwache Stellen.</span></div></li></ol>
+    <hr class="divider"><div class="row"><button class="btn ghost sm" data-act="reset">Fortschritt zurücksetzen</button></div></div>`;
+  return html;
+};
+document.addEventListener("change", e => { if (e.target.id === "examDate" && e.target.value) { state.progress.examDate = e.target.value; touch(); renderHead(); toast("Datum gespeichert"); } });
+ACTIONS.goDrill = a => { if (a === "v") { state.tab = "verben"; ACTIONS.vStart("weak"); } else if (a === "w") { state.tab = "woerter"; state.sub.wTopic = "alle"; ACTIONS.wStart("weak"); } else { state.tab = "grammatik"; state.sub.gTopic = "alle"; ACTIONS.gStart("weak"); } window.scrollTo(0, 0); };
+ACTIONS.reset = () => { if (!confirm("Wirklich den ganzen Fortschritt löschen?")) return; const ed = state.progress.examDate; state.progress = freshProgress(); state.progress.examDate = ed; touch(); render(); toast("Zurückgesetzt"); };
+
+render();
+</script>
+</body>
+</html>
